@@ -1,0 +1,12 @@
+com\qa\IMS\IMS.class
+com\qa\IMS\persistence\dao\CustomerDAO.class
+com\qa\IMS\persistence\domain\Domain.class
+com\qa\IMS\controller\Action.class
+com\qa\IMS\utils\Utils.class
+com\qa\IMS\controller\CrudController.class
+com\qa\IMS\controller\CustomerController.class
+com\qa\IMS\IMS$1.class
+com\qa\IMS\persistence\dao\Dao.class
+com\qa\IMS\persistence\domain\Customer.class
+com\qa\IMS\Runner.class
+com\qa\IMS\utils\DBUtils.class

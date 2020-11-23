@@ -1,11 +1,18 @@
 package com.qa.IMS;
 
-import com.qa.IMS.utils.Menu;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Runner {
 
-	public static void main(String[] hellooooo) {
-		Menu m = new Menu();
-		m.start();
+	public static final Logger LOGGER = LogManager.getLogger();
+	
+
+	public static void main(String[] args) {
+		
+		IMS ims = new IMS();
+		ims.imsSystem();
+		LOGGER.info("SO LONG!");
 	}
+
 }
