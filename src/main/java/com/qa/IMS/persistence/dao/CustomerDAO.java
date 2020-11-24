@@ -51,7 +51,7 @@ package com.qa.IMS.persistence.dao;
 		public Customer readLatest() {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT * FROM customer ORDER BY id DESC LIMIT 1");) {
+					ResultSet resultSet = statement.executeQuery("SELECT * FROM customer ORDER BY customer_id DESC LIMIT 1");) {
 				resultSet.next();
 				return modelFromResultSet(resultSet);
 			} catch (Exception e) {
@@ -70,7 +70,7 @@ package com.qa.IMS.persistence.dao;
 		public Customer create(Customer customer) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();) {
-				statement.executeUpdate("INSERT INTO customer(first_name, surname) values('" + customer.getFirstName()
+				statement.executeUpdate("INSERT INTO customer(first_name, last_name) values('" + customer.getFirstName()
 						+ "','" + customer.getSurname() + "')");
 				return readLatest();
 			} catch (Exception e) {
@@ -83,7 +83,7 @@ package com.qa.IMS.persistence.dao;
 		public Customer readCustomer(Long id) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT * FROM customer where id = " + id);) {
+					ResultSet resultSet = statement.executeQuery("SELECT * FROM customer where customer_id = " + id);) {
 				resultSet.next();
 				return modelFromResultSet(resultSet);
 			} catch (Exception e) {
@@ -104,8 +104,8 @@ package com.qa.IMS.persistence.dao;
 		public Customer update(Customer customer) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();) {
-				statement.executeUpdate("update customer set first_name ='" + customer.getFirstName() + "', surname ='"
-						+ customer.getSurname() + "' where id =" + customer.getId());
+				statement.executeUpdate("update customer set first_name ='" + customer.getFirstName() + "', last_name ='"
+						+ customer.getSurname() + "' where customer_id =" + customer.getId());
 				return readCustomer(customer.getId());
 			} catch (Exception e) {
 				LOGGER.debug(e);
@@ -123,7 +123,7 @@ package com.qa.IMS.persistence.dao;
 		public int delete(long id) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();) {
-				return statement.executeUpdate("delete from customer where id = " + id);
+				return statement.executeUpdate("delete from customer where customer_id = " + id);
 			} catch (Exception e) {
 				LOGGER.debug(e);
 				System.out.println(e.getMessage());
