@@ -51,7 +51,9 @@ public class ItemController implements CrudController<Item> {
 		String model = utils.getString();
 		System.out.println("Please enter the stock level");
 		Long stock = utils.getLong();
-		Item item = itemDAO.create(new Item(name, model, stock));
+		System.out.println("Please enter the price of the item");
+		Long price = utils.getLong();
+		Item item = itemDAO.create(new Item(name, model, stock, price));
 		System.out.println("Item created");
 		return item;
 	}
@@ -69,7 +71,9 @@ public class ItemController implements CrudController<Item> {
 		String model = utils.getString();
 		System.out.println("Please enter the new stock level");
 		Long stock = utils.getLong();
-		Item item = itemDAO.update(new Item(id, name, model, stock));
+		System.out.println("Please enter the new price");
+		Long price = utils.getLong();
+		Item item = itemDAO.update(new Item(id, name, model, stock, price));
 		System.out.println("Customer Updated");
 		return item;
 	}

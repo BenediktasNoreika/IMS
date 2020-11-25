@@ -7,18 +7,21 @@ public class Item {
 	private String name;
 	private String model;
 	private Long stock;
+	private Long price;
 	
-	public Item(Long product_id, String name, String model, Long stock) {
+	public Item(Long product_id, String name, String model, Long stock, Long price) {
 		this.product_id = product_id;
 		this.name = name;
 		this.model = model;
 		this.stock = stock; 
+		this.price = price;
 	}
 	
-	public Item(String name, String model, Long stock) {
+	public Item(String name, String model, Long stock, Long price) {
 		this.name = name;
 		this.model = model;
-		this.stock = stock; 
+		this.stock = stock;
+		this.price = price;
 	}
 
 	public String getModel() {
@@ -53,14 +56,19 @@ public class Item {
 		this.stock = stock;
 	}
 
+	public Long getPrice() {
+		return price;
+	}
 
-
+	public void setPrice(Long price) {
+		this.price = price;
+	}
 
 	@Override
 	public String toString() {
-		return "Item [product_id=" + product_id + ", name=" + name + ", model=" + model + ", stock=" + stock + "]";
+		return "Item [product_id=" + product_id + ", name=" + name + ", model=" + model + ", stock=" + stock
+				+ ", price=" + price + "]";
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -81,15 +89,24 @@ public class Item {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (price == null) {
+			if (other.price != null)
+				return false;
+		} else if (!price.equals(other.price))
+			return false;
 		if (product_id == null) {
 			if (other.product_id != null)
 				return false;
 		} else if (!product_id.equals(other.product_id))
 			return false;
-		if (stock != other.stock)
+		if (stock == null) {
+			if (other.stock != null)
+				return false;
+		} else if (!stock.equals(other.stock))
 			return false;
 		return true;
 	}
+
 
 
 	}
