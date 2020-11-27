@@ -1,9 +1,0 @@
-com\qa\IMS\controller\CustomerControllerTest.class
-com\qa\IMS\persistence\dao\ItemDAOtest.class
-com\qa\IMS\persistence\dao\OrderDAOtestFail.class
-com\qa\IMS\persistence\dao\OrderDAOtest.class
-com\qa\IMS\controller\ItemControllerTest.class
-com\qa\IMS\controller\OrderControllerTest.class
-com\qa\IMS\persistence\dao\ItemDAOtestFail.class
-com\qa\IMS\persistence\dao\CustomerDAOtest.class
-com\qa\IMS\persistence\dao\CustomerDAOtestFail.class
