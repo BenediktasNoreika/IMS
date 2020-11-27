@@ -20,12 +20,12 @@ public class OrderDAOtest {
 	
 	@BeforeClass
 	public static void init() {
-		DBUtils.connect("root", "root");		
+		DBUtils.connect("root", "root");				
 	}
 	
 	@Before
 	public void setup() {
-		DBUtils.getInstance().init("src/test/resources/sql-schema.sql", "src/test/resources/sql-data.sql");
+		DBUtils.getInstance().init("src/main/resources/sql-schema.sql", "src/main/resources/sql-data.sql");
 		
 	}
 	
@@ -56,7 +56,7 @@ public class OrderDAOtest {
 	@Test
 	public void testUpdate() {
 		Order created = new Order(1l,1L,1l,0.00 );
-		Order expected = new Order(1l,1L,"2020-10-10",0.00 );
+		Order expected = new Order(1l,1L,20l,400.00 );
 		assertEquals(null, orderDAO.update(created));
 	}
 	@Test
@@ -68,7 +68,7 @@ public class OrderDAOtest {
 	
 	@Test
 	public void testDelete() {
-		assertEquals(0, orderDAO.delete(1));
+		assertEquals(1, orderDAO.delete(1));
 		
 	}
 	

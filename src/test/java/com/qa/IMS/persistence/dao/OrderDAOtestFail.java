@@ -20,7 +20,7 @@ public class OrderDAOtestFail {
 	
 	@BeforeClass
 	public static void init() {
-		DBUtils.connect("root", "fail");		
+		DBUtils.connect("root", "fail");			
 	}
 	
 	@Before

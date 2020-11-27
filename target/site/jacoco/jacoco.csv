@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+IMS,com.qa.IMS.persistence.dao,ItemDAO,269,3,2,0,57,1,9,1,8,1
+IMS,com.qa.IMS.persistence.dao,CustomerDAO,276,3,4,0,67,1,10,1,8,1
+IMS,com.qa.IMS.persistence.dao,OrderDAO,388,3,4,0,80,1,13,1,11,1
+IMS,com.qa.IMS.utils,Utils,55,3,4,0,23,1,7,1,5,1
+IMS,com.qa.IMS.utils,DBUtils,162,0,4,0,34,0,13,0,11,0
+IMS,com.qa.IMS,IMS,155,0,17,0,49,0,16,0,4,0
+IMS,com.qa.IMS,Runner,16,0,0,0,6,0,3,0,3,0
+IMS,com.qa.IMS.controller,ItemController,0,142,0,2,0,37,0,7,0,6
+IMS,com.qa.IMS.controller,OrderController,85,104,2,4,19,27,3,6,1,5
+IMS,com.qa.IMS.controller,CustomerController,0,110,0,2,0,29,0,7,0,6
+IMS,com.qa.IMS.controller,Action,98,0,4,0,19,0,7,0,5,0
+IMS,com.qa.IMS.persistence.domain,Item,131,70,35,1,46,16,28,4,10,4
+IMS,com.qa.IMS.persistence.domain,Order,199,59,41,1,62,14,35,5,14,5
+IMS,com.qa.IMS.persistence.domain,Domain,88,0,2,0,17,0,6,0,5,0
+IMS,com.qa.IMS.persistence.domain,Customer,85,46,23,1,30,12,18,4,6,4

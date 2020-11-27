@@ -67,29 +67,7 @@ public class OrderControllerTest {
 		
 	}
 	
-	@Test
-	public void testUpdate() {
-		Long id = 1l;
-		Long product_id = 2l;
-		Long quantity = 20l;
-		Double total = 20.00;
-		Order created = new Order(id,product_id, quantity, total);		
-		Order expected = new Order(id,product_id, quantity, total);		
-		
-		when(utils.getLong()).thenReturn(id);
-		when(utils.getLong()).thenReturn(product_id);
-		when(utils.getLong()).thenReturn(quantity);
-		
-		
-		when(orderDAO.update(any(Order.class))).thenReturn(expected);
-		
-		assertEquals(expected, orderController.update());
-		
-		verify(utils, times(3)).getLong();
-	
-		verify(orderDAO, times(1)).update(any(Order.class));
-		
-	}
+
 	
 	@Test
 	public void testDelete() {

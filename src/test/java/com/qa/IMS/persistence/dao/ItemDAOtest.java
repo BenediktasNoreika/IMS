@@ -20,7 +20,7 @@ public class ItemDAOtest {
 	
 	@BeforeClass
 	public static void init() {
-		DBUtils.connect("root", "root");		
+		DBUtils.connect("root", "root");			
 	}
 	
 	@Before

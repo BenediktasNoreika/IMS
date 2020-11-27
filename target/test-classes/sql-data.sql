@@ -1,3 +1,4 @@
+
 INSERT INTO `test`.`customer` (`first_name`, `last_name`) VALUES ('jordan', 'harrison');
 
 INSERT INTO `test`.`product` (`name`, `model`, `stock`, `price`) VALUES ('hoover', 'hkfoor','10','20');

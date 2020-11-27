@@ -17,20 +17,20 @@ CREATE TABLE IF NOT EXISTS `test`.`product` (
     PRIMARY KEY (`item_id`)
 );
 
+CREATE TABLE IF NOT EXISTS `test`.`orders_items` (
+    `order_id` INT(11) NOT NULL,
+    `item_id` INT(11) NULL DEFAULT NULL,
+    `quantity` INT(11) NULL DEFAULT NULL,
+    `total` INT(11) NULL DEFAULT NULL,
+    
+    PRIMARY KEY (`order_id`)
+);
+
 CREATE TABLE IF NOT EXISTS `test`.`orders` (
     `order_id` INT(11) NOT NULL AUTO_INCREMENT,
     `customer_id` INT(11) NULL DEFAULT NULL,
     `order_date` VARCHAR(40) NULL DEFAULT NULL,
     `total` INT(11) NULL DEFAULT '0',
-    
-    PRIMARY KEY (`order_id`)
-);
-
-CREATE TABLE IF NOT EXISTS `test`.`orders_items` (
-    `order_id` INT(11) NULL DEFAULT NULL,
-    `item_id` INT(11) NULL DEFAULT NULL,
-    `quantity` INT(11) NULL DEFAULT NULL,
-    `total` INT(11) NULL DEFAULT NULL,
     
     PRIMARY KEY (`order_id`)
 );
