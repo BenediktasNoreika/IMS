@@ -11,6 +11,7 @@ package com.qa.IMS.persistence.dao;
 	import org.apache.logging.log4j.LogManager;
 	import org.apache.logging.log4j.Logger;
 
+	
     import com.qa.IMS.persistence.domain.Customer;
 	import com.qa.IMS.utils.DBUtils;
 
@@ -43,7 +44,7 @@ package com.qa.IMS.persistence.dao;
 				return customers;
 			} catch (SQLException e) {
 				LOGGER.debug(e);
-				System.out.println(e.getMessage());
+				LOGGER.info(e.getMessage());
 			}
 			return new ArrayList<>();
 		}
@@ -56,7 +57,7 @@ package com.qa.IMS.persistence.dao;
 				return modelFromResultSet(resultSet);
 			} catch (Exception e) {
 				LOGGER.debug(e);
-				System.out.println(e.getMessage());
+				LOGGER.info(e.getMessage());
 			}
 			return null;
 		}
@@ -75,7 +76,7 @@ package com.qa.IMS.persistence.dao;
 				return readLatest();
 			} catch (Exception e) {
 				LOGGER.debug(e);
-				System.out.println(e.getMessage());
+				LOGGER.info(e.getMessage());
 			}
 			return null;
 		}
@@ -88,7 +89,7 @@ package com.qa.IMS.persistence.dao;
 				return modelFromResultSet(resultSet);
 			} catch (Exception e) {
 				LOGGER.debug(e);
-				System.out.println(e.getMessage());
+				LOGGER.info(e.getMessage());
 			}
 			return null;
 		}
@@ -109,7 +110,7 @@ package com.qa.IMS.persistence.dao;
 				return readCustomer(customer.getId());
 			} catch (Exception e) {
 				LOGGER.debug(e);
-				System.out.println(e.getMessage());
+				LOGGER.info(e.getMessage());
 			}
 			return null;
 		}
@@ -123,12 +124,21 @@ package com.qa.IMS.persistence.dao;
 		public int delete(long id) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();) {
-				 statement.executeUpdate("delete from order where customer_id = " + id);
-				 statement.executeUpdate("delete from customer where customer_id = " + id);
+				Statement statement2 = connection.createStatement();
+				ResultSet resultSet = statement2.executeQuery("SELECT * FROM orders where customer_id = " + id);
+			
+				while (resultSet.next()) {
+					Long order_id = resultSet.getLong("order_id");
+					OrderDAO orderDAO = new OrderDAO();
+					orderDAO.delete(order_id);
+				}
+				
+				statement.executeUpdate("delete from customer where customer_id = " + id);
+				 
 				 return 1;
 			} catch (Exception e) {
 				LOGGER.debug(e);
-				System.out.println(e.getMessage());
+				LOGGER.info(e.getMessage());
 			}
 			return 0;
 		}

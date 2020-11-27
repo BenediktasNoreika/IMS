@@ -7,12 +7,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.qa.IMS.persistence.domain.Order;
 import com.qa.IMS.utils.DBUtils;
 
 public class OrderDAO implements Dao<Order> {
 
-	
+	public static final Logger LOGGER = LogManager.getLogger();
 
 	@Override
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
@@ -50,7 +53,7 @@ public class OrderDAO implements Dao<Order> {
 			return items;
 		} catch (SQLException e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return new ArrayList<>();
 	}
@@ -66,7 +69,7 @@ public class OrderDAO implements Dao<Order> {
 			return items;
 		} catch (SQLException e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return new ArrayList<>();
 	}
@@ -80,7 +83,7 @@ public class OrderDAO implements Dao<Order> {
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -99,7 +102,7 @@ public class OrderDAO implements Dao<Order> {
 			return readLatest();
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -112,7 +115,7 @@ public class OrderDAO implements Dao<Order> {
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -131,11 +134,11 @@ public class OrderDAO implements Dao<Order> {
 			statement.executeUpdate("INSERT INTO orders_items(order_id, item_id, quantity, total) values('" + order.getOrder_id()
 			+ "','" + order.getProduct_id()+ "','" + order.getQuantity() + "','" + order.getTotal() + "')");
 			statement.executeUpdate("UPDATE orders SET total = (SELECT SUM(total) FROM orders_items WHERE order_id =" +order.getOrder_id()  + ") WHERE order_id=" + order.getOrder_id());
-			System.out.println("Order Updated");
+			LOGGER.info("Order Updated");
 			return readItem(order.getOrder_id());
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -155,7 +158,7 @@ public class OrderDAO implements Dao<Order> {
 					
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return 0;
 	}
@@ -172,7 +175,7 @@ public class OrderDAO implements Dao<Order> {
 					
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return 0;
 	}

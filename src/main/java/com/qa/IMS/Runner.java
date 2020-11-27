@@ -12,7 +12,7 @@ public class Runner {
 		
 		IMS ims = new IMS();
 		ims.imsSystem();
-		System.out.println("SO LONG!");
+		LOGGER.info("SO LONG!");
 	}
 
 }

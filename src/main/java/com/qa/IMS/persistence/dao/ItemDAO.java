@@ -7,11 +7,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.qa.IMS.persistence.domain.Item;
 import com.qa.IMS.utils.DBUtils;
 
 public class ItemDAO implements Dao<Item> {
-
+	
+	public static final Logger LOGGER = LogManager.getLogger();
 	
 
 	@Override
@@ -41,7 +45,7 @@ public class ItemDAO implements Dao<Item> {
 			return items;
 		} catch (SQLException e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return new ArrayList<>();
 	}
@@ -54,7 +58,7 @@ public class ItemDAO implements Dao<Item> {
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -73,7 +77,7 @@ public class ItemDAO implements Dao<Item> {
 			return readLatest();
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -86,7 +90,7 @@ public class ItemDAO implements Dao<Item> {
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -107,7 +111,7 @@ public class ItemDAO implements Dao<Item> {
 			return readItem(item.getProduct_id());
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -120,13 +124,13 @@ public class ItemDAO implements Dao<Item> {
 	@Override
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
-				Statement statement = connection.createStatement();) {
+				Statement statement = connection.createStatement()) {
 			statement.executeUpdate("delete from orders_items where item_id = " + id);
 			statement.executeUpdate("delete from product where item_id = " + id);
 			return 1;
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
+			LOGGER.info(e.getMessage());
 		}
 		return 0;
 	}

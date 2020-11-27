@@ -36,14 +36,14 @@ public class OrderController implements CrudController<Order> {
 	public List<Order> readAll() {
 		List<Order> orders = orderDAO.readAll();
 		for (Order order : orders) {
-			System.out.println(order.toString());
-			System.out.println("**** This customer has ordered the following items ****");
+			LOGGER.info(order.toString());
+			LOGGER.info("**** This customer has ordered the following items ****");
 			List<Order> ordersItems = orderDAO.readAllitems(order.getOrder_id());
 			for(Order ordersitems : ordersItems) {
-				System.out.println(ordersitems.toStringLong());
+				LOGGER.info(ordersitems.toStringLong());
 				
 			}
-			System.out.println("**********************");
+			LOGGER.info("**********************");
 			
 		}
 		return orders;
@@ -54,12 +54,12 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order create() {
-		System.out.println("Please enter a customer ID");
+		LOGGER.info("Please enter a customer ID");
 		Long id = utils.getLong();
-		System.out.println("Please enter a order date (in the fromat YYYY-MM-DD)");
+		LOGGER.info("Please enter a order date (in the fromat YYYY-MM-DD)");
 		String date = utils.getString();
 		Order order = orderDAO.create(new Order(id, date));
-		System.out.println("order created");
+		LOGGER.info("order created");
 		return order;
 	}
 
@@ -68,17 +68,17 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order update() {
-		System.out.println("Please enter the id of the order you would like to update");
+		LOGGER.info("Please enter the id of the order you would like to update");
 		Long id = utils.getLong();
-		System.out.println("Please enter a product ID to add");
+		LOGGER.info("Please enter a product ID to add");
 		Long product_id = utils.getLong();
-		System.out.println("Please enter the quantity of product to order");
+		LOGGER.info("Please enter the quantity of product to order");
 		Long quantity = utils.getLong();
 		ItemDAO itemDAO = new ItemDAO();
 		Item item = itemDAO.readItem(product_id);
 		double total = item.getPrice() * quantity;
 		Order order = orderDAO.update(new Order(id, product_id, quantity, total));
-		System.out.println(order.toString());
+		LOGGER.info(order.toString());
 		return order;
 	}
 
@@ -89,17 +89,17 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public int delete() {
-		System.out.println("Delete full order or individual items from an order? (1)Full order (2)For individual items");
+		LOGGER.info("Delete full order or individual items from an order? (1)Full order (2)For individual items");
 		Long decision = utils.getLong();
 		if(decision == 1) {
-		System.out.println("Please enter the id of the order you would like to delete");
+		LOGGER.info("Please enter the id of the order you would like to delete");
 		Long id = utils.getLong();
 		return orderDAO.delete(id);
 		}
 		else {
-			System.out.println("Please enter the id of the order you would like to delete from");
+			LOGGER.info("Please enter the id of the order you would like to delete from");
 			Long id = utils.getLong();
-			System.out.println("Please enter the id of the item you would like to delete");
+			LOGGER.info("Please enter the id of the item you would like to delete");
 			Long product_id = utils.getLong();
 			return orderDAO.deleteIndividual(id, product_id);
 		}

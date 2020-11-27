@@ -37,7 +37,7 @@ public enum Action {
 	 */
 	public static void printActions() {
 		for (Action action : Action.values()) {
-			System.out.println(action.getDescription());
+			LOGGER.info(action.getDescription());
 		}
 	}
 
@@ -53,7 +53,7 @@ public enum Action {
 			try {
 				action = Action.valueOf(utils.getString().toUpperCase());
 			} catch (IllegalArgumentException e) {
-				System.out.println("Invalid selection please try again");
+				LOGGER.info("Invalid selection please try again");
 			}
 		} while (action == null);
 		return action;

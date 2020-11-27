@@ -35,7 +35,7 @@ public class ItemController implements CrudController<Item> {
 	public List<Item> readAll() {
 		List<Item> items = itemDAO.readAll();
 		for (Item item : items) {
-			System.out.println(item.toString());
+			LOGGER.info(item.toString());
 		}
 		return items;
 	}
@@ -45,16 +45,16 @@ public class ItemController implements CrudController<Item> {
 	 */
 	@Override
 	public Item create() {
-		System.out.println("Please enter a item name");
+		LOGGER.info("Please enter a item name");
 		String name = utils.getString();
-		System.out.println("Please enter a model");
+		LOGGER.info("Please enter a model");
 		String model = utils.getString();
-		System.out.println("Please enter the stock level");
+		LOGGER.info("Please enter the stock level");
 		Long stock = utils.getLong();
-		System.out.println("Please enter the price of the item");
+		LOGGER.info("Please enter the price of the item");
 		Double price = utils.getDouble();
 		Item item = itemDAO.create(new Item(name, model, stock, price));
-		System.out.println("Item created");
+		LOGGER.info("Item created");
 		return item;
 	}
 
@@ -63,18 +63,18 @@ public class ItemController implements CrudController<Item> {
 	 */
 	@Override
 	public Item update() {
-		System.out.println("Please enter the id of the item you would like to update");
+		LOGGER.info("Please enter the id of the item you would like to update");
 		Long id = utils.getLong();
-		System.out.println("Please enter a new name");
+		LOGGER.info("Please enter a new name");
 		String name = utils.getString();
-		System.out.println("Please enter a new model");
+		LOGGER.info("Please enter a new model");
 		String model = utils.getString();
-		System.out.println("Please enter the new stock level");
+		LOGGER.info("Please enter the new stock level");
 		Long stock = utils.getLong();
-		System.out.println("Please enter the new price");
+		LOGGER.info("Please enter the new price");
 		Double price = utils.getDouble();
 		Item item = itemDAO.update(new Item(id, name, model, stock, price));
-		System.out.println("Customer Updated");
+		LOGGER.info("Customer Updated");
 		return item;
 	}
 
@@ -85,7 +85,7 @@ public class ItemController implements CrudController<Item> {
 	 */
 	@Override
 	public int delete() {
-		System.out.println("Please enter the id of the item you would like to delete");
+		LOGGER.info("Please enter the id of the item you would like to delete");
 		Long id = utils.getLong();
 		return itemDAO.delete(id);
 	}
