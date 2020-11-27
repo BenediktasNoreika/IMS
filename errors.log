@@ -1,1 +1,0 @@
-20201127 01:22:38 DEBUG [main] utils.DBUtils DBUtils.java56 - java.sql.SQLException: Data truncated for column 'order_date' at row 1

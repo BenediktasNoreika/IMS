@@ -123,7 +123,9 @@ package com.qa.IMS.persistence.dao;
 		public int delete(long id) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();) {
-				return statement.executeUpdate("delete from customer where customer_id = " + id);
+				 statement.executeUpdate("delete from order where customer_id = " + id);
+				 statement.executeUpdate("delete from customer where customer_id = " + id);
+				 return 1;
 			} catch (Exception e) {
 				LOGGER.debug(e);
 				System.out.println(e.getMessage());

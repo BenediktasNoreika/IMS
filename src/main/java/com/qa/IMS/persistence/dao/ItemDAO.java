@@ -121,8 +121,9 @@ public class ItemDAO implements Dao<Item> {
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
-			
-			return statement.executeUpdate("delete from product where item_id = " + id);
+			statement.executeUpdate("delete from orders_items where item_id = " + id);
+			statement.executeUpdate("delete from product where item_id = " + id);
+			return 1;
 		} catch (Exception e) {
 			
 			System.out.println(e.getMessage());

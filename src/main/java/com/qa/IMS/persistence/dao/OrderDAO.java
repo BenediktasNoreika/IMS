@@ -24,6 +24,15 @@ public class OrderDAO implements Dao<Order> {
 		return new Order(order_id, customer_id, date, total);
 	}
 
+	public Order modelFromResultSetItems(ResultSet resultSet) throws SQLException {
+		
+		Long order_id = resultSet.getLong("order_id");
+		Long product_id = resultSet.getLong("item_id");
+		Long quantity = resultSet.getLong("quantity");
+		Double total = resultSet.getDouble("total");
+		return new Order(order_id, product_id, quantity, total);
+	}
+
 	/**
 	 * Reads all customers from the database
 	 * 
@@ -34,7 +43,7 @@ public class OrderDAO implements Dao<Order> {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("select * from orders");) {
-			List<Order> items = new ArrayList<>();
+			List<Order> items = new ArrayList<>();			
 			while (resultSet.next()) {
 				items.add(modelFromResultSet(resultSet));
 			}
@@ -45,6 +54,23 @@ public class OrderDAO implements Dao<Order> {
 		}
 		return new ArrayList<>();
 	}
+
+	public List<Order> readAllitems(Long id) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("select * from orders_items where order_id = " + id);) {
+			List<Order> items = new ArrayList<>();			
+			while (resultSet.next()) {
+				items.add(modelFromResultSetItems(resultSet));
+			}
+			return items;
+		} catch (SQLException e) {
+			
+			System.out.println(e.getMessage());
+		}
+		return new ArrayList<>();
+	}
+	
 
 	public Order readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();

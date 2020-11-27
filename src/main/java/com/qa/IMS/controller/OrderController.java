@@ -30,13 +30,21 @@ public class OrderController implements CrudController<Order> {
 	}
 
 	/**
-	 * Reads all customers to the logger
+	 * Reads all orders to the logger
 	 */
 	@Override
 	public List<Order> readAll() {
 		List<Order> orders = orderDAO.readAll();
 		for (Order order : orders) {
 			System.out.println(order.toString());
+			System.out.println("**** This customer has ordered the following items ****");
+			List<Order> ordersItems = orderDAO.readAllitems(order.getOrder_id());
+			for(Order ordersitems : ordersItems) {
+				System.out.println(ordersitems.toStringLong());
+				
+			}
+			System.out.println("**********************");
+			
 		}
 		return orders;
 	}

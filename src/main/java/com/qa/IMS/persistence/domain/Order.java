@@ -94,8 +94,7 @@ public class Order {
 		return "Order [order_id=" + order_id + ", customer_id=" + customer_id + ", date=" + date + ", total=" + total + "]";
 	}
 	public String toStringLong() {
-		return "Order [order_id=" + order_id + ", customer_id=" + customer_id + ", date=" + date + ", product_id="
-				+ product_id + ", quantity=" + quantity + ", total=" + total + "]";
+		return "Order [order_id=" + order_id + ", product_id=" + product_id + ", quantity=" + quantity + ", total=" + total + "]";
 	}
 
 
