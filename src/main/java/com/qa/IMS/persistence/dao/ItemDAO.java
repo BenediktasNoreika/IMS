@@ -20,7 +20,7 @@ public class ItemDAO implements Dao<Item> {
 		String name = resultSet.getString("name");
 		String model = resultSet.getString("model");
 		Long stock = resultSet.getLong("stock");
-		Long price = resultSet.getLong("price");
+		Double price = resultSet.getDouble("price");
 		return new Item(product_id, name, model, stock, price);
 	}
 
@@ -121,6 +121,7 @@ public class ItemDAO implements Dao<Item> {
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
+			
 			return statement.executeUpdate("delete from product where item_id = " + id);
 		} catch (Exception e) {
 			

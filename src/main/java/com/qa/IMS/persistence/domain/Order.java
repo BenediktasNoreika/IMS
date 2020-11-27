@@ -9,9 +9,9 @@ public class Order {
 	private String date;
 	private Long product_id;
 	private Long quantity;
-	private Long total;
+	private Double total;
 	
-	public Order(Long order_id, Long customer_id, String date, long total) {
+	public Order(Long order_id, Long customer_id, String date, Double total) {
 		
 		this.order_id = order_id;
 		this.customer_id = customer_id;
@@ -27,7 +27,7 @@ public class Order {
 		
 	}
     
-    public Order(Long order_id, Long product_id, Long quantity, Long total) {
+    public Order(Long order_id, Long product_id, Long quantity, Double total) {
     	
     	this.order_id = order_id;
     	this.product_id = product_id;
@@ -61,11 +61,11 @@ public class Order {
 		this.date = date;
 	}
 
-	public long getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(long total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 
@@ -85,12 +85,15 @@ public class Order {
 		this.quantity = quantity;
 	}
 
-	public void setTotal(Long total) {
+	public void setTotal(Double total) {
 		this.total = total;
 	}
 
 	@Override
 	public String toString() {
+		return "Order [order_id=" + order_id + ", customer_id=" + customer_id + ", date=" + date + ", total=" + total + "]";
+	}
+	public String toStringLong() {
 		return "Order [order_id=" + order_id + ", customer_id=" + customer_id + ", date=" + date + ", product_id="
 				+ product_id + ", quantity=" + quantity + ", total=" + total + "]";
 	}

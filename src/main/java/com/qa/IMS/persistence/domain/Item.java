@@ -7,9 +7,9 @@ public class Item {
 	private String name;
 	private String model;
 	private Long stock;
-	private Long price;
+	private Double price;
 	
-	public Item(Long product_id, String name, String model, Long stock, Long price) {
+	public Item(Long product_id, String name, String model, Long stock, Double price) {
 		this.product_id = product_id;
 		this.name = name;
 		this.model = model;
@@ -17,7 +17,7 @@ public class Item {
 		this.price = price;
 	}
 	
-	public Item(String name, String model, Long stock, Long price) {
+	public Item(String name, String model, Long stock, Double price) {
 		this.name = name;
 		this.model = model;
 		this.stock = stock;
@@ -56,11 +56,11 @@ public class Item {
 		this.stock = stock;
 	}
 
-	public Long getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Long price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

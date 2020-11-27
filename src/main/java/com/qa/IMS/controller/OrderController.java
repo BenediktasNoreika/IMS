@@ -68,7 +68,7 @@ public class OrderController implements CrudController<Order> {
 		Long quantity = utils.getLong();
 		ItemDAO itemDAO = new ItemDAO();
 		Item item = itemDAO.readItem(product_id);
-		Long total = item.getPrice() * quantity;
+		double total = item.getPrice() * quantity;
 		Order order = orderDAO.update(new Order(id, product_id, quantity, total));
 		System.out.println(order.toString());
 		return order;
@@ -81,9 +81,20 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public int delete() {
+		System.out.println("Delete full order or individual items from an order? (1)Full order (2)For individual items");
+		Long decision = utils.getLong();
+		if(decision == 1) {
 		System.out.println("Please enter the id of the order you would like to delete");
 		Long id = utils.getLong();
 		return orderDAO.delete(id);
+		}
+		else {
+			System.out.println("Please enter the id of the order you would like to delete from");
+			Long id = utils.getLong();
+			System.out.println("Please enter the id of the item you would like to delete");
+			Long product_id = utils.getLong();
+			return orderDAO.deleteIndividual(id, product_id);
+		}
 	}
 
 }

@@ -20,7 +20,7 @@ public class OrderDAO implements Dao<Order> {
 		Long order_id = resultSet.getLong("order_id");
 		Long customer_id = resultSet.getLong("customer_id");
 		String date = resultSet.getString("order_date");
-		Long total = resultSet.getLong("total");
+		Double total = resultSet.getDouble("total");
 		return new Order(order_id, customer_id, date, total);
 	}
 
@@ -124,7 +124,7 @@ public class OrderDAO implements Dao<Order> {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("delete from orders_items where order_id = " + id);
-			statement.executeUpdate("delete from orders where order_id = " + id);
+			return statement.executeUpdate("delete from orders where order_id = " + id);
 			
 					
 		} catch (Exception e) {
@@ -134,7 +134,20 @@ public class OrderDAO implements Dao<Order> {
 		return 0;
 	}
 	
-	public int deleteItem() {
+	public int deleteIndividual(Long id, long itemId) {
+		
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();) {
+			statement.executeUpdate("delete from orders_items where order_id = " + id + " and item_id = " + itemId );
+			statement.executeUpdate("UPDATE orders SET total = (SELECT SUM(total) FROM orders_items WHERE order_id =" + id  + ") WHERE order_id=" + id);
+			return 1;
+			
+			
+					
+		} catch (Exception e) {
+			
+			System.out.println(e.getMessage());
+		}
 		return 0;
 	}
 
